@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+
+        <!--数据库连接-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/seckill"
+                        userId="root"
+                        password="root"/>
+
+        <!--生成DataObject类存放位置-->
+        <javaModelGenerator targetPackage="com.xrq.seckill.dataobject" targetProject="src/main/java">
+            <!--建立的model对象是否不可变，也就是生成的model没有setter方法-->
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--生成Mapper类存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.xrq.seckill.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--对应类和表名-->
+        <table tableName="user_info"     domainObjectName="UserDO"          enableCountByExample="false" enableUpdateByExample="false"  enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="user_password" domainObjectName="UserPasswordDO"  enableCountByExample="false" enableUpdateByExample="false"  enableDeleteByExample="false"  enableSelectByExample="false" selectByExampleQueryId="false"></table>
+
+
+    </context>
+
+</generatorConfiguration>
