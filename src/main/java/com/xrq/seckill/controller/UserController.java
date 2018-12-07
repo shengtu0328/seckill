@@ -28,17 +28,17 @@ public class UserController {
 
     @RequestMapping("/get")
     @ResponseBody
-    public UserVo getUser(@RequestParam(name="id") Integer id){
+    public UserVo getUser(@RequestParam(name = "id") Integer id) {
         UserModel userModel = userService.getUserById(id);
         return convertFromModel(userModel);
     }
 
-    private UserVo convertFromModel(UserModel userModel){
-        if(userModel==null){
+    private UserVo convertFromModel(UserModel userModel) {
+        if (userModel == null) {
             return null;
         }
-        UserVo userVo=new UserVo();
-        BeanUtils.copyProperties(userModel,userVo);
+        UserVo userVo = new UserVo();
+        BeanUtils.copyProperties(userModel, userVo);
         return userVo;
     }
 

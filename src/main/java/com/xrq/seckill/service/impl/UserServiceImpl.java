@@ -27,21 +27,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserModel getUserById(Integer id) {
         UserDO userDO = userDOMapper.selectByPrimaryKey(id);
-        if(userDO==null){
+        if (userDO == null) {
             return null;
         }
-        UserPasswordDO userPasswordDO=userPasswordDOMapper.selectByUserId(userDO.getId());
-        return convertFromDataObject(userDO,userPasswordDO);
+        UserPasswordDO userPasswordDO = userPasswordDOMapper.selectByUserId(userDO.getId());
+        return convertFromDataObject(userDO, userPasswordDO);
     }
 
-    private UserModel convertFromDataObject(UserDO userDO, UserPasswordDO userPasswordDO){
-        if(userDO==null){
+    private UserModel convertFromDataObject(UserDO userDO, UserPasswordDO userPasswordDO) {
+        if (userDO == null) {
             return null;
         }
-        UserModel userModel= new UserModel();
-        BeanUtils.copyProperties(userDO,userModel);
+        UserModel userModel = new UserModel();
+        BeanUtils.copyProperties(userDO, userModel);
 
-        if(userPasswordDO!=null){
+        if (userPasswordDO != null) {
             userModel.setEncrptPassword(userPasswordDO.getEncrptPassword());
         }
         return userModel;
