@@ -3,6 +3,7 @@ package com.xrq.seckill.controller;
 import com.sun.org.apache.regexp.internal.RE;
 import com.xrq.seckill.controller.vo.UserVo;
 import com.xrq.seckill.dao.UserDOMapper;
+import com.xrq.seckill.response.CommonReturnType;
 import com.xrq.seckill.service.UserService;
 import com.xrq.seckill.service.model.UserModel;
 import org.springframework.beans.BeanUtils;
@@ -28,9 +29,10 @@ public class UserController {
 
     @RequestMapping("/get")
     @ResponseBody
-    public UserVo getUser(@RequestParam(name = "id") Integer id) {
+    public CommonReturnType getUser(@RequestParam(name = "id") Integer id) {
         UserModel userModel = userService.getUserById(id);
-        return convertFromModel(userModel);
+        UserVo userVo = convertFromModel(userModel);
+        return CommonReturnType.create(userVo);
     }
 
     private UserVo convertFromModel(UserModel userModel) {
